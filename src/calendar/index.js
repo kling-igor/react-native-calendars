@@ -325,6 +325,7 @@ class Calendar extends Component {
           weekNumbers={this.props.showWeekNumbers}
           onPressArrowLeft={this.props.onPressArrowLeft}
           onPressArrowRight={this.props.onPressArrowRight}
+          onPressHeader={this.props.onPressHeader}
           webAriaLevel={this.props.webAriaLevel}
           disableArrowLeft={this.props.disableArrowLeft}
           disableArrowRight={this.props.disableArrowRight}

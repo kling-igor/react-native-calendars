@@ -46,6 +46,9 @@ export default function(theme={}) {
       fontWeight: appStyle.textDayHeaderFontWeight,
       color: appStyle.textSectionTitleColor
     },
+    weekendDayHeader: {
+      color: '#FF000080'
+    },
     ...(theme[STYLESHEET_ID] || {})
   });
 }

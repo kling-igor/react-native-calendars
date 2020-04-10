@@ -40,6 +40,7 @@ class CalendarHeader extends Component {
     this.substractMonth = this.substractMonth.bind(this);
     this.onPressLeft = this.onPressLeft.bind(this);
     this.onPressRight = this.onPressRight.bind(this);
+    this.onPressHeader = this.onPressHeader.bind(this)
   }
 
   addMonth() {
@@ -95,6 +96,10 @@ class CalendarHeader extends Component {
       return onPressArrowRight(this.addMonth, this.props.month);
     }
     return this.addMonth();
+  }
+
+  onPressHeader() {
+    this.props.onPressHeader({year:this.props.month.getFullYear(), month:this.props.month.getMonth() +1})
   }
 
   render() {
@@ -159,7 +164,7 @@ class CalendarHeader extends Component {
         accessibilityElementsHidden={this.props.accessibilityElementsHidden} // iOS
         importantForAccessibility={this.props.importantForAccessibility} // Android
       >
-        <View style={this.style.header}>
+        <TouchableOpacity style={this.style.header} onPress={this.onPressHeader}>
           {leftArrow}
           <View style={{flexDirection: 'row'}}>
             <Text
@@ -173,7 +178,7 @@ class CalendarHeader extends Component {
             {indicator}
           </View>
           {rightArrow}
-        </View>
+        </TouchableOpacity>
         {!this.props.hideDayNames &&
           <View style={this.style.week}>
             {this.props.weekNumbers && 
@@ -183,7 +188,7 @@ class CalendarHeader extends Component {
               <Text
                 allowFontScaling={false}
                 key={idx}
-                style={this.style.dayHeader}
+                style={[this.style.dayHeader, idx >=5 && this.style.weekendDayHeader]}
                 numberOfLines={1}
                 accessibilityLabel={''}
                 // accessible={false} // not working
